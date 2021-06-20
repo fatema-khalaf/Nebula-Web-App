@@ -1,0 +1,94 @@
+﻿@section Style{
+    <link rel="stylesheet" type="text/css" href="~/admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+}
+@model IEnumerable<Nebula.VM.CheckoutVm>;
+@using Nebula.Enum;
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="title">
+                <h4>Orders</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                </ol>
+            </nav>
+        </div>
+        
+    </div>
+</div>
+<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+    <div class="card-box pb-10">
+        <div class="h5 pd-20 mb-0">Orders</div>
+        <table class="data-table table nowrap">
+            <thead>
+                <tr>
+                    <th class="table-plus">Order ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Book ID</th>
+                    <th>Order Status</th>
+                    <th class="datatable-nosort">Change Order Status</th>
+                    <th>Creation Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                <tr>
+                    <td>@order.Id</td>
+                    <td><span class="badge badge-pill" data-bgcolor="#e7ebf5" data-color="#265ed7">@order.FullName</span></td>
+                    <td>@order.Email</td>
+                    <td>@order.Phone</td>
+                    <td>@order.Address</td>
+                    <td>@order.City</td>
+                    <td>@order.Country</td>
+                    <td>@order.bookId</td>
+                    <td>@order.OrderStatus</td>
+                    <td>
+                        <form action="ChangeStatuse">
+                            <input type="hidden" name="id" value="@order.Id" />
+                            <select onchange="this.form.submit()" name="status">
+                                <!option value="@OrderStatus.On_Hold" @(order.OrderStatus == OrderStatus.On_Hold ? "Selcted" :"")>
+                                    On Hold
+                                </!option>
+                                <!option value="@OrderStatus.Processing_Payment" @(order.OrderStatus == OrderStatus.Processing_Payment ? "Selcted" : "")>
+                                    Processing Payment
+                                </!option>
+                                <!option value="@OrderStatus.Ready_to_Ship" @(order.OrderStatus == OrderStatus.Ready_to_Ship ? "Selcted" : "")>
+                                    Ready to Ship
+                                </!option>
+                                <!option value="@OrderStatus.Shipped" @(order.OrderStatus == OrderStatus.Shipped ? "Selcted" : "")>
+                                    Shipped
+                                </!option>
+                                <!option value="@OrderStatus.Deliverd" @(order.OrderStatus == OrderStatus.Deliverd ? "Selcted" : "")>
+                                    Deliverd
+                                </!option>
+                            </select>
+                        </form>
+                    </td>
+                    <td>@order.CreatedDate</td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/admin/src/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/admin/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/admin/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="~/admin/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/admin/vendors/scripts/dashboard3.js"></script>
+}
+

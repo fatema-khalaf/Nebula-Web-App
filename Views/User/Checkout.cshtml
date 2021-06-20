@@ -1,0 +1,99 @@
+﻿
+@{
+    Layout = "UseLayout";
+    @model Nebula.VM.HomeVm;
+}
+@section Style{
+    <link rel="stylesheet" type="text/css" href="~/User/css/flexslider.css">
+    <link rel="stylesheet" type="text/css" href="~/User/css/internal.css">
+}
+<section class="main-container col2-right-layout">
+    <div class="main container">
+        <div class="row">
+            <div class="col-main col-sm-9 animated" style="visibility: visible;">
+                <div class="my-account">
+                    <div class="page-title">
+                        <h1>Make an order</h1>
+                    </div>
+                    <form action="#" method="post" id="form-validate" style="margin-bottom:20px;">
+                        <div class="fieldset group-select">
+                            <input name="form_key" type="hidden" value="">
+                            <input type="hidden" name="success_url" value="">
+                            <input type="hidden" name="error_url" value="">
+                            <h2 class="legend">Contact Information</h2>
+                            <ul class="">
+                                <input asp-for="@Model.checkout.bookId" type="hidden">
+                                <li class="">
+                                    <div class="customer-name">
+                                        <div class="">
+                                            <label for="firstname" >Full Name<span class="required">*</span></label>
+                                            <input asp-for="@Model.checkout.FullName" type="text" maxlength="255" class="input-text required-entry">
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="">
+                                        <label for="company" asp-for="@Model.checkout.Email">Email<span class="required">*</span></label>
+                                        <br>
+                                        <input asp-for="@Model.checkout.Email" type="text"  value="" class="input-text required-entry">
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="">
+                                        <label asp-for="@Model.checkout.Phone" for="telephone">Telephone<em class="required">*</em></label>
+                                        <br>
+                                        <input asp-for="@Model.checkout.Phone" type="text" class="input-text   required-entry" id="telephone">
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fieldset group-select">
+                            <h2 class="legend">Address</h2>
+                            <ul class="">
+                                <li class="">
+                                    <label  asp-for="@Model.checkout.Address" for="street_1">Street Address<em class="required">*</em></label>
+                                    <br>
+                                    <input  asp-for="@Model.checkout.Address" type="text"  class="input-text  required-entry">
+                                </li>
+                               
+                                <li class="">
+                                    <div class="field">
+                                        <div class="input-box">
+                                            <label  asp-for="@Model.checkout.City" for="city">City<em class="required">*</em></label>
+                                            <br>
+                                            <input  asp-for="@Model.checkout.City" type="text"  class="input-text  required-entry" id="city">
+                                        </div>
+                                    </div>
+                                    
+                                </li>
+                                <li class="">
+                                    <div class="field">
+                                        <div class="input-box">
+                                            <label  asp-for="@Model.checkout.Country" for="zip">Country <em class="required">*</em></label>
+                                            <br>
+                                            <input  asp-for="@Model.checkout.Country" type="text"   class="input-text validate-zip-international  required-entry">
+                                        </div>
+                                    </div>
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="buttons-set">
+                            <p class="required">* Required Fields</p>
+                            <button type="submit" title="" class="button"><span>Checkout</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!--col-right sidebar col-sm-3-->
+        </div>
+    </div>
+</section>
+@section Script{
+    <script type="text/javascript" src="~/User/js/cloud-zoom.js"></script>
+    <script type="text/javascript" src="~/User/js/parallax.js"></script>
+    <script type="text/javascript" src="~/User/js/jquery.flexslider.js"></script>
+}

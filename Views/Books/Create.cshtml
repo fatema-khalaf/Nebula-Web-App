@@ -1,0 +1,79 @@
+﻿@* to conect the viwe with the model *@
+@model Nebula.VM.BooksVM;
+@using Nebula.Enum;
+
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="title">
+                <h4>Books</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Books</li>
+                </ol>
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label>Book Name</label>
+            <input asp-for="Name" class="form-control" type="text" placeholder="Enter sub category name">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Publisher</label>
+            <input asp-for="Publisher" class="form-control"></input>
+        </div>
+        <div class="form-group">
+            <label>Pages</label>
+            <input asp-for="pages" class="form-control"></input>
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input asp-for="Price" class="form-control"></input>
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            <select class="form-control" asp-items="@ViewBag.ListCategories" asp-for="categoryId" required ="">
+
+                <option selected=""> Select category </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Author</label>
+            <select class="form-control" asp-items="@ViewBag.Authors" asp-for="BrandId" required="">
+                <option selected=""> Select author </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Language</label>
+            <select class="form-control" asp-items="Html.GetEnumSelectList<Language>()" asp-for="Language" required="">
+                <option selected=""> Select Language </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Image</label>
+            <div class="custom-file">
+                <input name="files" type="file" class="custom-file-input" multiple="">
+                <label class="custom-file-label">Choose one or more image</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-danger" type="submit">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

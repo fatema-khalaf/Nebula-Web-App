@@ -1,0 +1,73 @@
+﻿@* to conect the viwe with the model *@
+@model Nebula.VM.CategoriesVm;
+
+<div class="page-header">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="title">
+                <h4>Edit categories</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit categories</li>
+                </ol>
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+    @*
+        method="post"=> to send the data encripted
+        action="@Url.ActionLink(Create, controller:"Brands")
+    *@
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label>category Name</label>
+            <input asp-for="Name" class="form-control" type="text" placeholder="Enter sub category name">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Main Category</label>
+            <select class="form-control" asp-items="@ViewBag.ListParentCategories" asp-for="ParentId" required="">
+                <option selected=""> No main category </option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            @if (Model.Images.Count > 0)
+            {
+                foreach(var image in Model.Images)
+                {
+                    <div>
+                        <div>
+                            <a href="@Url.ActionLink("DeleteImage",controller:"Categories",values: new {fileName = image})">delete</a>
+                        </div>
+                        <div class="avatar mr-2 flex-shrink-0">
+                            <img src="~/uploads/Categories/@(image).png" class="border-radius-100 shadow" style="width:50px; height:50px;" alt=""/>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+        <div class="form-group">
+            <label>Image</label>
+            <div class="custom-file">
+                <input name="files" type="file" class="custom-file-input" multiple="">
+                <label class="custom-file-label">Choose one or more image</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-danger" type="submit">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
